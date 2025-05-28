@@ -1,0 +1,25 @@
+{
+  "dependencies": {
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "name": "basic_informational_site",
+  "version": "1.0.0",
+  "main": "server.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rllopez0410/Basic_Informational_Site.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Rllopez0410/Basic_Informational_Site/issues"
+  },
+  "homepage": "https://github.com/Rllopez0410/Basic_Informational_Site#readme",
+  "description": ""
+}

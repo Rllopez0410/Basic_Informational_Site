@@ -1,36 +1,31 @@
-let http = require("http");
-let url = require("url");
-let fs = require("fs");
+let express = require("express");
+let server = express();
 
-http.createServer(function(req, res) {
-    let reqUrl = url.parse(req.url, true);
-    let reqFile = "." + reqUrl.pathname;
-    if (reqFile == "./") {
-            reqFile = "./index.html";
-            console.log("Homepage requested");
-    }
-        fs.readFile(reqFile, function(err, data) {
+server.get("/", function(req, res) {
+    res.sendFile(__dirname + "/index.html")
+})
+
+server.get("/:fileName", function(req, res) {
+    let fileName = req.params.fileName;
+    let requested = __dirname + `/${fileName}.html`
+
+    res.sendFile(requested, function(err) {
         if (err) {
-            fs.readFile("./error.html", function(errServer, errData) {
-                if (errServer) {
-                    res.writeHead(500, {"content-type": "text/html"});
-                    res.write("Server not working");
-                    console.log("500");
-                    return res.end();
-                }
-                res.writeHead(404, {"content-type": "text/html"});
-                res.write(errData);
-                console.log("Error page is showing");
-                return res.end();
-            })
-        } else {
-            res.writeHead(200, {"content-type": "text/html"});
-            res.write(data);
-            console.log("request found");
-            return res.end();
+            res.status(404)
+            res.sendFile(__dirname + "/error.html")
         }
-        
-    });
-}).listen(8080, () => {
-    console.log("Server listening...");
+    })
+})
+
+// server.get("/contact", function(req, res) {
+//     res.sendFile(__dirname + "/contact-me.html")
+// })
+
+// server.use("/", function(req, res) {
+//     res.status(404)
+//     res.sendFile(__dirname + "/error.html")
+// })
+
+server.listen(8080, () => {
+    console.log("server listening");
 })
