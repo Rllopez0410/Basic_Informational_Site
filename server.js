@@ -15,17 +15,6 @@ server.get("/:fileName", function(req, res) {
             res.sendFile(__dirname + "/error.html")
         }
     })
-})
-
-// server.get("/contact", function(req, res) {
-//     res.sendFile(__dirname + "/contact-me.html")
-// })
-
-// server.use("/", function(req, res) {
-//     res.status(404)
-//     res.sendFile(__dirname + "/error.html")
-// })
-
-server.listen(8080, () => {
+}).listen(8080, () => {
     console.log("server listening");
-})
+});
